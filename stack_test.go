@@ -48,3 +48,22 @@ func TestSize(t *testing.T) {
 		t.Fatal("Unexpected size, expected 1")
 	}
 }
+
+func TestPeek(t *testing.T) {
+	s := NewStack()
+	s.Push(1)
+	s.Push(2)
+
+	elem, err := s.Peek()
+	if err != nil {
+		t.Fatal("Expected err to be nil")
+	}
+
+	if elem != 2 {
+		t.Fatalf("Expected v to be '%s'", elem)
+	}
+
+	if s.Size() != 2 {
+		t.Fatal("Expected size to be 2")
+	}
+}

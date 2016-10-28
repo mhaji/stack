@@ -27,7 +27,7 @@ func (s *stack) Pop() (interface{}, error) {
 	s.Lock()
 	defer s.Unlock()
 
-	if s.Size() == 0 {
+	if s.IsEmpty() {
 		return nil, EmptyStackErr
 	}
 
@@ -36,6 +36,18 @@ func (s *stack) Pop() (interface{}, error) {
 	return ret, nil
 }
 
+func (s *stack) Peek() (interface{}, error) {
+	if s.IsEmpty() {
+		return nil, EmptyStackErr
+	}
+
+	return s.data[len(s.data) - 1], nil
+}
+
 func (s *stack) Size() int {
 	return len(s.data)
+}
+
+func (s *stack) IsEmpty() bool {
+	return s.Size() == 0
 }
