@@ -1,2 +1,2 @@
 # Stack
-A simple stack written in Go
+A simple implementation of the stack datastructure written in Go.
