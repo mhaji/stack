@@ -1,8 +1,8 @@
 package stack
 
 import (
-	"sync"
 	"errors"
+	"sync"
 )
 
 var EmptyStackErr = errors.New("Stack is empty")
@@ -37,11 +37,14 @@ func (s *stack) Pop() (interface{}, error) {
 }
 
 func (s *stack) Peek() (interface{}, error) {
+	s.Lock()
+	defer s.Unlock()
+
 	if s.IsEmpty() {
 		return nil, EmptyStackErr
 	}
 
-	return s.data[len(s.data) - 1], nil
+	return s.data[len(s.data)-1], nil
 }
 
 func (s *stack) Size() int {
